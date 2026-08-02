@@ -13,9 +13,9 @@ function AnimatedName({ name, delay }) {
 
 function LetterReveal({ text }) {
   return (
-    <span className="blessing-letter-reveal" aria-label={text}>
+    <span className="letter-reveal" aria-label={text}>
       {[...text].map((letter, index) => (
-        <span className="blessing-letter" aria-hidden="true" key={`${letter}-${index}`} style={{ '--letter-delay': `${index * 18}ms` }}>
+        <span className="reveal-letter" aria-hidden="true" key={`${letter}-${index}`} style={{ '--letter-delay': `${index * 18}ms` }}>
           {letter === ' ' ? '\u00a0' : letter}
         </span>
       ))}
@@ -90,7 +90,7 @@ function EventsPanel({ section, panelState }) {
       <div className="panel__content">
         <div className="events-copy">
           <p className="panel__label">{section.label}</p>
-          <h2 id={`${section.id}-title`}>{section.title}</h2>
+          <h2 id={`${section.id}-title`}><LetterReveal text={section.title} /></h2>
           <div className="featured-couple" aria-label="Featured couple names">
             <p className="featured-couple__lead">{section.featuredLead}</p>
             <div className="featured-couple__names">
@@ -127,7 +127,7 @@ function DetailsPanel({ section, rsvpSection, panelState }) {
       />
       <div className="panel__content panel__content--lifted">
         <p className="panel__label">{section.label}</p>
-        <h2 id={`${section.id}-title`}>{section.title}</h2>
+        <h2 id={`${section.id}-title`}><LetterReveal text={section.title} /></h2>
         <div className="detail-stack">
           {section.cards.map((card) => {
             const isVenueCard = card.heading === 'Venue'
@@ -166,7 +166,7 @@ function RsvpPanel({ section, panelState }) {
       <div className="panel__content panel__content--rsvp-compact">
         <div className="rsvp-copy">
           <p className="panel__label">{section.label}</p>
-          <h2 id={`${section.id}-title`}>{section.title}</h2>
+          <h2 id={`${section.id}-title`}><LetterReveal text={section.title} /></h2>
           <p className="panel__text">{section.text}</p>
           <div className="contact-list" aria-label="RSVP contact numbers">
             {section.contacts.map((contact) => (

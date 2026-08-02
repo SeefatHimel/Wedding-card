@@ -379,20 +379,20 @@ a:focus-visible {
   display: inline-block;
 }
 
-.blessing-letter-reveal,
-.blessing-letter {
+.letter-reveal,
+.reveal-letter {
   display: inline;
 }
 
-.blessing-letter {
+.reveal-letter {
   display: inline-block;
 }
 
-.motion-ready .panel--story:not(.has-entered) .blessing-letter {
+.motion-ready .panel:not(.has-entered) .reveal-letter {
   opacity: 0;
 }
 
-.motion-ready .panel--story.has-entered .blessing-letter {
+.motion-ready .panel.has-entered .reveal-letter {
   animation: blessing-letter-arrive 520ms var(--letter-delay) cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
@@ -1524,25 +1524,6 @@ a:focus-visible {
     line-height: 1.04;
   }
 
-  .motion-ready .panel--story.has-entered .panel__label,
-  .motion-ready .panel--events.has-entered .events-copy,
-  .motion-ready .panel--details.has-entered h2,
-  .motion-ready .panel--rsvp.has-entered .rsvp-copy {
-    animation: mobile-text-unfold 760ms cubic-bezier(0.16, 1, 0.3, 1) both;
-  }
-
-  .motion-ready .panel--events.has-entered .events-copy { animation-delay: 80ms; }
-  .motion-ready .panel--details.has-entered h2 { animation-delay: 70ms; }
-  .motion-ready .panel--rsvp.has-entered .rsvp-copy { animation-delay: 70ms; }
-
-  .motion-ready .panel--events.has-entered .schedule-item {
-    animation: schedule-slide-in 620ms cubic-bezier(0.22, 1, 0.36, 1) both;
-  }
-
-  .motion-ready .panel--events.has-entered .schedule-item:nth-child(1) { animation-delay: 260ms; }
-  .motion-ready .panel--events.has-entered .schedule-item:nth-child(2) { animation-delay: 360ms; }
-  .motion-ready .panel--events.has-entered .schedule-item:nth-child(3) { animation-delay: 460ms; }
-  .motion-ready .panel--events.has-entered .schedule-item:nth-child(4) { animation-delay: 560ms; }
 
   .featured-couple {
     margin-top: 0.85rem;
