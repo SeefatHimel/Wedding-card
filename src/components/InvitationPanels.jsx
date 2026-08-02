@@ -59,12 +59,13 @@ function StoryPanel({ section, galleryImages, panelState }) {
           </span>
           <span className="story-quote__text">{section.accent}</span>
         </div>
-        <div className="image-strip">
+        <div className="image-strip" role="region" aria-label="Wedding photo gallery">
           {galleryImages.map((image, index) => (
             <figure className={`image-strip__card image-strip__card--${index + 1}`} key={image.src}>
               <img src={image.src} alt={image.alt} loading="lazy" />
             </figure>
           ))}
+          <span className="image-strip__hint" aria-hidden="true">Swipe for more</span>
         </div>
       </div>
     </section>
