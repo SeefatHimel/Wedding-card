@@ -977,7 +977,34 @@ a:focus-visible {
 
   .panel--opening .panel__content--opening {
     justify-content: flex-end;
-    padding: 3.15rem;
+    padding: 3.15rem 3.15rem 3.15rem 1.25rem;
+  }
+
+  .panel--opening .opening-details {
+    margin-top: auto;
+  }
+
+  .panel--opening .title-stack {
+    justify-items: center;
+    margin-left: 0;
+    text-align: center;
+    transform: none;
+  }
+
+  .panel--opening .title-stack__amp {
+    justify-self: center;
+  }
+
+  .panel--opening .opening-details .meta-line {
+    margin-top: 0;
+  }
+
+  .panel--opening .opening-details .pill-row {
+    margin-top: 0.85rem;
+  }
+
+  .panel--opening .swipe-hint {
+    margin-top: 1.4rem;
   }
 
   .panel--story .panel__content,

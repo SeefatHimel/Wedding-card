@@ -39,16 +39,18 @@ function OpeningPanel({ section, panelState }) {
           </span>
           <p><AnimatedName name={section.title[2]} delay={550} /></p>
         </div>
-        <p className="meta-line">
-          <time dateTime={section.dateTime}>{section.date}</time>
-          <span className="meta-line__venue">{section.place}</span>
-        </p>
-        <div className="pill-row" aria-label="Invitation tags">
-          {section.tags.map((tag) => (
-            <span className="glass-pill" key={tag}>
-              {tag}
-            </span>
-          ))}
+        <div className="opening-details">
+          <p className="meta-line">
+            <time dateTime={section.dateTime}>{section.date}</time>
+            <span className="meta-line__venue">{section.place}</span>
+          </p>
+          <div className="pill-row" aria-label="Invitation tags">
+            {section.tags.map((tag) => (
+              <span className="glass-pill" key={tag}>
+                {tag}
+              </span>
+            ))}
+          </div>
         </div>
         <p className="swipe-hint">{section.note}</p>
       </div>
