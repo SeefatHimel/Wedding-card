@@ -46,7 +46,7 @@ function StoryPanel({ section, galleryImages }) {
           <span className="story-quote__mark" aria-hidden="true">
             30:21
           </span>
-          {section.accent}
+          <span className="story-quote__text">{section.accent}</span>
         </div>
         <div className="image-strip">
           {galleryImages.map((image, index) => (

@@ -16,6 +16,14 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Brittany Signature';
+  src: url('./assets/fonts/brittany-signature.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
 :root {
   --bg: #27090d;
   --bg-deep: #140406;
@@ -371,9 +379,13 @@ a:focus-visible {
   border-left: 2px solid rgba(246, 215, 154, 0.52);
   background: rgba(255, 242, 229, 0.04);
   color: var(--gold);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  font-size: 0.74rem;
+}
+
+.story-quote__text {
+  font-family: 'Brittany Signature', cursive;
+  font-size: clamp(1rem, 2.2vw, 1.65rem);
+  line-height: 1.15;
+  letter-spacing: 0.015em;
 }
 
 .story-quote__mark {
