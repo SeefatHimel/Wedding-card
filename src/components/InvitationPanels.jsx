@@ -11,6 +11,18 @@ function AnimatedName({ name, delay }) {
   )
 }
 
+function LetterReveal({ text }) {
+  return (
+    <span className="blessing-letter-reveal" aria-label={text}>
+      {[...text].map((letter, index) => (
+        <span className="blessing-letter" aria-hidden="true" key={`${letter}-${index}`} style={{ '--letter-delay': `${index * 18}ms` }}>
+          {letter === ' ' ? '\u00a0' : letter}
+        </span>
+      ))}
+    </span>
+  )
+}
+
 function OpeningPanel({ section, panelState }) {
   return (
     <section className={`panel panel--opening ${panelState}`} id={section.id} aria-labelledby={`${section.id}-title`}>
@@ -20,18 +32,16 @@ function OpeningPanel({ section, panelState }) {
       />
       <div className="panel__overlay" />
       <div className="panel__content panel__content--opening">
-        <div className="monogram" aria-hidden="true">
-          {section.monogram}
-        </div>
         <div className="title-stack">
-          <h1 id={`${section.id}-title`}><AnimatedName name={section.title[0]} delay={160} /></h1>
+          <h1 id={`${section.id}-title`}><AnimatedName name={section.title[0]} delay={120} /></h1>
           <span className="title-stack__amp" aria-hidden="true">
             {section.title[1]}
           </span>
-          <p><AnimatedName name={section.title[2]} delay={810} /></p>
+          <p><AnimatedName name={section.title[2]} delay={550} /></p>
         </div>
         <p className="meta-line">
-          <time dateTime={section.dateTime}>{section.date}</time> • {section.place}
+          <time dateTime={section.dateTime}>{section.date}</time>
+          <span className="meta-line__venue">{section.place}</span>
         </p>
         <div className="pill-row" aria-label="Invitation tags">
           {section.tags.map((tag) => (
@@ -51,7 +61,7 @@ function StoryPanel({ section, galleryImages, panelState }) {
     <section className={`panel panel--story ${panelState}`} id={section.id} aria-labelledby={`${section.id}-title`}>
       <div className="panel__content">
         <p className="panel__label">{section.label}</p>
-        <h2 id={`${section.id}-title`}>{section.title}</h2>
+        <h2 id={`${section.id}-title`}><LetterReveal text={section.title} /></h2>
         <p className="panel__text">{section.text}</p>
         <div className="story-quote">
           <span className="story-quote__mark" aria-hidden="true">
