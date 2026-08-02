@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import InvitationPanels from './components/InvitationPanels'
 import SectionNav from './components/SectionNav'
 import { invitationSections, galleryImages } from './data/invitation'
@@ -10,6 +10,30 @@ const BACKEND_PING_INTERVAL_MS = 5 * 60 * 1000
 function App() {
   const activeSection = useActiveSection(invitationSections.map((section) => section.id))
   const apiUrl = import.meta.env.VITE_RSVP_API_URL || DEFAULT_API_URL
+  const [motionReady, setMotionReady] = useState(false)
+
+  useEffect(() => {
+    let isCancelled = false
+    const openingImage = new Image()
+    openingImage.src = invitationSections[0].heroImage
+
+    const imageReady = openingImage.decode
+      ? openingImage.decode().catch(() => {})
+      : new Promise((resolve) => {
+          openingImage.onload = resolve
+          openingImage.onerror = resolve
+        })
+    const fontReady = document.fonts?.load('400 1em "Eline Novika"').catch(() => {}) ?? Promise.resolve()
+    const fallback = new Promise((resolve) => window.setTimeout(resolve, 1200))
+
+    Promise.race([Promise.all([imageReady, fontReady]), fallback]).then(() => {
+      if (!isCancelled) requestAnimationFrame(() => setMotionReady(true))
+    })
+
+    return () => {
+      isCancelled = true
+    }
+  }, [])
 
   useEffect(() => {
     let intervalId
@@ -73,7 +97,7 @@ function App() {
   }, [apiUrl])
 
   return (
-    <div className="experience">
+    <div className={`experience ${motionReady ? 'motion-ready' : ''}`}>
       <div className="experience__aura experience__aura--left" />
       <div className="experience__aura experience__aura--right" />
 
@@ -82,7 +106,7 @@ function App() {
         <SectionNav sections={invitationSections} activeSection={activeSection} />
 
         <div className="invitation-shell">
-          <InvitationPanels sections={invitationSections} galleryImages={galleryImages} />
+          <InvitationPanels sections={invitationSections} galleryImages={galleryImages} activeSection={activeSection} />
         </div>
       </main>
     </div>

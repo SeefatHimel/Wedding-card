@@ -1,8 +1,19 @@
+import { useEffect, useState } from 'react'
 import RsvpForm from './RsvpForm'
 
-function OpeningPanel({ section }) {
+function AnimatedName({ name, delay }) {
   return (
-    <section className="panel panel--opening" id={section.id} aria-labelledby={`${section.id}-title`}>
+    <span className="title-stack__name" aria-label={name} style={{ '--name-delay': `${delay}ms` }}>
+      {[...name].map((letter, index) => (
+        <span className="title-stack__letter" aria-hidden="true" key={`${letter}-${index}`} style={{ '--letter-index': index }}>{letter}</span>
+      ))}
+    </span>
+  )
+}
+
+function OpeningPanel({ section, panelState }) {
+  return (
+    <section className={`panel panel--opening ${panelState}`} id={section.id} aria-labelledby={`${section.id}-title`}>
       <div
         className="panel__image panel__image--hero"
         style={{ backgroundImage: `linear-gradient(rgba(44, 8, 14, 0.12), rgba(44, 8, 14, 0.12)), url(${section.heroImage})` }}
@@ -13,11 +24,11 @@ function OpeningPanel({ section }) {
           {section.monogram}
         </div>
         <div className="title-stack">
-          <h1 id={`${section.id}-title`}>{section.title[0]}</h1>
+          <h1 id={`${section.id}-title`}><AnimatedName name={section.title[0]} delay={160} /></h1>
           <span className="title-stack__amp" aria-hidden="true">
             {section.title[1]}
           </span>
-          <p>{section.title[2]}</p>
+          <p><AnimatedName name={section.title[2]} delay={810} /></p>
         </div>
         <p className="meta-line">
           <time dateTime={section.dateTime}>{section.date}</time> • {section.place}
@@ -35,9 +46,9 @@ function OpeningPanel({ section }) {
   )
 }
 
-function StoryPanel({ section, galleryImages }) {
+function StoryPanel({ section, galleryImages, panelState }) {
   return (
-    <section className="panel panel--story" id={section.id} aria-labelledby={`${section.id}-title`}>
+    <section className={`panel panel--story ${panelState}`} id={section.id} aria-labelledby={`${section.id}-title`}>
       <div className="panel__content">
         <p className="panel__label">{section.label}</p>
         <h2 id={`${section.id}-title`}>{section.title}</h2>
@@ -60,9 +71,9 @@ function StoryPanel({ section, galleryImages }) {
   )
 }
 
-function EventsPanel({ section }) {
+function EventsPanel({ section, panelState }) {
   return (
-    <section className="panel panel--events" id={section.id} aria-labelledby={`${section.id}-title`}>
+    <section className={`panel panel--events ${panelState}`} id={section.id} aria-labelledby={`${section.id}-title`}>
       <div className="panel__content">
         <div className="events-copy">
           <p className="panel__label">{section.label}</p>
@@ -94,9 +105,9 @@ function EventsPanel({ section }) {
   )
 }
 
-function DetailsPanel({ section, rsvpSection }) {
+function DetailsPanel({ section, rsvpSection, panelState }) {
   return (
-    <section className="panel panel--details" id={section.id} aria-labelledby={`${section.id}-title`}>
+    <section className={`panel panel--details ${panelState}`} id={section.id} aria-labelledby={`${section.id}-title`}>
       <div
         className="panel__image panel__image--details"
         style={{ backgroundImage: `linear-gradient(rgba(44, 8, 14, 0.12), rgba(44, 8, 14, 0.5)), url(${section.featureImage})` }}
@@ -136,9 +147,9 @@ function DetailsPanel({ section, rsvpSection }) {
   )
 }
 
-function RsvpPanel({ section }) {
+function RsvpPanel({ section, panelState }) {
   return (
-    <section className="panel panel--rsvp" id={section.id} aria-labelledby={`${section.id}-title`}>
+    <section className={`panel panel--rsvp ${panelState}`} id={section.id} aria-labelledby={`${section.id}-title`}>
       <div className="panel__content panel__content--rsvp-compact">
         <div className="rsvp-copy">
           <p className="panel__label">{section.label}</p>
@@ -160,14 +171,29 @@ function RsvpPanel({ section }) {
   )
 }
 
-function InvitationPanels({ sections, galleryImages }) {
+function InvitationPanels({ sections, galleryImages, activeSection }) {
+  const [enteredSections, setEnteredSections] = useState(() => new Set())
+
+  useEffect(() => {
+    if (!activeSection) return
+    setEnteredSections((current) => {
+      if (current.has(activeSection)) return current
+      return new Set(current).add(activeSection)
+    })
+  }, [activeSection])
+
+  const panelState = (section) => [
+    activeSection === section.id ? 'is-active' : '',
+    enteredSections.has(section.id) ? 'has-entered' : '',
+  ].filter(Boolean).join(' ')
+
   return (
     <>
-      <OpeningPanel section={sections[0]} />
-      <StoryPanel section={sections[1]} galleryImages={galleryImages} />
-      <EventsPanel section={sections[2]} />
-      <DetailsPanel section={sections[3]} rsvpSection={sections[4]} />
-      <RsvpPanel section={sections[4]} />
+      <OpeningPanel section={sections[0]} panelState={panelState(sections[0])} />
+      <StoryPanel section={sections[1]} galleryImages={galleryImages} panelState={panelState(sections[1])} />
+      <EventsPanel section={sections[2]} panelState={panelState(sections[2])} />
+      <DetailsPanel section={sections[3]} rsvpSection={sections[4]} panelState={panelState(sections[3])} />
+      <RsvpPanel section={sections[4]} panelState={panelState(sections[4])} />
     </>
   )
 }

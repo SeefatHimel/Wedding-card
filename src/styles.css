@@ -138,6 +138,7 @@ a:focus-visible {
   border: 1px solid rgba(255, 228, 195, 0.18);
   box-shadow: var(--shadow);
   overflow: hidden;
+  animation: frame-arrive 1s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .device-frame__shine {
@@ -240,6 +241,14 @@ a:focus-visible {
   background-position: center 18%;
   background-size: cover;
   transform: scale(1.01);
+  opacity: 0;
+  transition: opacity 420ms ease;
+}
+
+.motion-ready .panel__image--hero { opacity: 1; }
+
+.motion-ready .panel--opening.is-active .panel__image--hero {
+  animation: hero-settle 2.4s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .panel--opening .panel__content {
@@ -301,10 +310,27 @@ a:focus-visible {
   text-transform: none;
 }
 
+.title-stack__name,
+.title-stack__letter {
+  display: inline-block;
+}
+
+.title-stack__letter {
+  opacity: 0;
+}
+
+.motion-ready .panel--opening.is-active .title-stack__letter {
+  animation: letter-arrive 1s calc(var(--name-delay) + (var(--letter-index) * 115ms)) cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
 .title-stack__amp {
   font-size: 1rem;
   color: var(--gold);
   letter-spacing: 0.4em;
+}
+
+.motion-ready .panel--opening.is-active .title-stack__amp {
+  animation: amp-arrive 700ms 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .meta-line,
@@ -478,6 +504,32 @@ a:focus-visible {
   min-height: 16.5rem;
 }
 
+.motion-ready .panel--story.is-active .image-strip__card {
+  animation-duration: 1100ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  animation-fill-mode: both;
+}
+
+.motion-ready .panel--story .image-strip__card {
+  opacity: 0;
+  transform: scale(1.06);
+}
+
+.motion-ready .panel--story.is-active .image-strip__card--1 {
+  animation-name: image-slide-from-left;
+  animation-delay: 140ms;
+}
+
+.motion-ready .panel--story.is-active .image-strip__card--2 {
+  animation-name: image-slide-from-right;
+  animation-delay: 500ms;
+}
+
+.motion-ready .panel--story.is-active .image-strip__card--3 {
+  animation-name: image-slide-from-right;
+  animation-delay: 860ms;
+}
+
 .image-strip__card--2,
 .image-strip__card--3 {
   min-height: 7.85rem;
@@ -530,6 +582,43 @@ a:focus-visible {
   background: radial-gradient(circle, #f7d798 10%, #a96e29 70%);
   box-shadow: 0 0 24px rgba(242, 201, 138, 0.34);
   flex-shrink: 0;
+}
+
+.motion-ready .panel--events.is-active .schedule-item__dot { animation: dot-pulse 1.4s ease-in-out infinite alternate; }
+
+@keyframes frame-arrive {
+  from { opacity: 0; transform: translateY(18px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes hero-settle {
+  from { transform: scale(1.11); filter: saturate(0.72) contrast(1.08); }
+  to { transform: scale(1.01); filter: saturate(1) contrast(1); }
+}
+
+@keyframes letter-arrive {
+  from { opacity: 0; transform: translateY(0.28em) rotate(2deg) scale(0.9); filter: blur(7px); }
+  to { opacity: 1; transform: translateY(0) rotate(0) scale(1); filter: blur(0); }
+}
+
+@keyframes amp-arrive {
+  from { opacity: 0; transform: scale(0.2) rotate(-30deg); }
+  to { opacity: 1; transform: scale(1) rotate(0); }
+}
+
+@keyframes image-slide-from-left {
+  from { opacity: 0; transform: translateX(-24vw) scale(0.92); clip-path: inset(0 0 0 100% round 1.25rem); }
+  to { opacity: 1; transform: translateX(0) scale(1); clip-path: inset(0 0 0 0 round 1.25rem); }
+}
+
+@keyframes image-slide-from-right {
+  from { opacity: 0; transform: translateX(24vw) scale(0.92); clip-path: inset(0 100% 0 0 round 1.25rem); }
+  to { opacity: 1; transform: translateX(0) scale(1); clip-path: inset(0 0 0 0 round 1.25rem); }
+}
+
+@keyframes dot-pulse {
+  from { transform: scale(0.85); box-shadow: 0 0 8px rgba(242, 201, 138, 0.2); }
+  to { transform: scale(1.25); box-shadow: 0 0 28px rgba(242, 201, 138, 0.62); }
 }
 
 .detail-stack {
