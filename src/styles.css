@@ -985,10 +985,13 @@ a:focus-visible {
   }
 
   .panel--opening .title-stack {
+    position: relative;
+    left: -6rem;
     justify-items: center;
     margin-left: 0;
     text-align: center;
     transform: none;
+    top: 6.5rem;
   }
 
   .panel--opening .title-stack__amp {
