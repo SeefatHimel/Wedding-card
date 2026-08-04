@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import RsvpForm from './RsvpForm'
 
 function AnimatedName({ name, delay }) {
@@ -12,13 +12,25 @@ function AnimatedName({ name, delay }) {
 }
 
 function LetterReveal({ text }) {
+  const words = text.split(' ')
+  let letterIndex = 0
+
   return (
     <span className="letter-reveal" aria-label={text}>
-      {[...text].map((letter, index) => (
-        <span className="reveal-letter" aria-hidden="true" key={`${letter}-${index}`} style={{ '--letter-delay': `${index * 18}ms` }}>
-          {letter === ' ' ? '\u00a0' : letter}
-        </span>
-      ))}
+      {words.map((word, wordIndex) => {
+        const letters = [...word].map((letter, index) => {
+              const delay = letterIndex * 18
+              letterIndex += 1
+              return <span className="reveal-letter" aria-hidden="true" key={`${letter}-${index}`} style={{ '--letter-delay': `${delay}ms` }}>{letter}</span>
+            })
+        letterIndex += 1
+        return (
+          <Fragment key={`${word}-${wordIndex}`}>
+            <span className="reveal-word">{letters}</span>
+            {wordIndex < words.length - 1 ? ' ' : null}
+          </Fragment>
+        )
+      })}
     </span>
   )
 }
@@ -92,13 +104,13 @@ function EventsPanel({ section, panelState }) {
           <p className="panel__label">{section.label}</p>
           <h2 id={`${section.id}-title`}><LetterReveal text={section.title} /></h2>
           <div className="featured-couple" aria-label="Featured couple names">
-            <p className="featured-couple__lead">{section.featuredLead}</p>
-            <div className="featured-couple__names">
-              <span>{section.featuredNames[0]}</span>
+          <p className="featured-couple__lead">{section.featuredLead}</p>
+          <div className="featured-couple__names">
+              <span className="featured-couple__name"><LetterReveal text={section.featuredNames[0]} /></span>
               <span className="featured-couple__amp" aria-label="and">
                 ♡
               </span>
-              <span>{section.featuredNames[1]}</span>
+              <span className="featured-couple__name"><LetterReveal text={section.featuredNames[1]} /></span>
             </div>
           </div>
         </div>
