@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useState } from 'react'
-import RsvpForm from './RsvpForm'
+// import RsvpForm from './RsvpForm'
 
 function AnimatedName({ name, delay }) {
   return (
@@ -172,6 +172,7 @@ function DetailsPanel({ section, rsvpSection, panelState }) {
   )
 }
 
+/* RSVP temporarily removed.
 function RsvpPanel({ section, panelState }) {
   return (
     <section className={`panel panel--rsvp ${panelState}`} id={section.id} aria-labelledby={`${section.id}-title`}>
@@ -195,6 +196,7 @@ function RsvpPanel({ section, panelState }) {
     </section>
   )
 }
+*/
 
 function InvitationPanels({ sections, galleryImages, activeSection }) {
   const [enteredSections, setEnteredSections] = useState(() => new Set())
@@ -217,8 +219,8 @@ function InvitationPanels({ sections, galleryImages, activeSection }) {
       <OpeningPanel section={sections[0]} panelState={panelState(sections[0])} />
       <StoryPanel section={sections[1]} galleryImages={galleryImages} panelState={panelState(sections[1])} />
       <EventsPanel section={sections[2]} panelState={panelState(sections[2])} />
-      <DetailsPanel section={sections[3]} rsvpSection={sections[4]} panelState={panelState(sections[3])} />
-      <RsvpPanel section={sections[4]} panelState={panelState(sections[4])} />
+      <DetailsPanel section={sections[3]} rsvpSection={sections[3]} panelState={panelState(sections[3])} />
+      {/* <RsvpPanel section={sections[4]} panelState={panelState(sections[4])} /> */}
     </>
   )
 }
