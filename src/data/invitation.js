@@ -55,7 +55,9 @@ export const invitationSections = [
         body: 'A.K.M. Anwar Hossain\nand\nSelina Akter',
       },
     ],
+    venueMap: 'https://maps.app.goo.gl/7uCoQoVjFGd3779x9',
   },
+  /* RSVP temporarily removed.
   {
     id: 'rsvp',
     label: 'RSVP',
@@ -66,6 +68,7 @@ export const invitationSections = [
     ctaSecondary: 'Open Location',
     venueMap: 'https://maps.app.goo.gl/7uCoQoVjFGd3779x9',
   },
+  */
 ]
 
 export const galleryImages = [
