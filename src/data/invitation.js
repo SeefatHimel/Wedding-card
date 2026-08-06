@@ -1,6 +1,6 @@
 import akhdCertificate from '../assets/images/akhd-certificate.jpeg'
+import akhdFamily from '../assets/images/akhd-family.jpeg'
 import akhdPortrait from '../assets/images/akhd-portrait.jpeg'
-import akhdSigning from '../assets/images/akhd-signing.jpeg'
 
 export const invitationSections = [
   {
@@ -81,7 +81,7 @@ export const galleryImages = [
     alt: 'Himel and Proma holding their Akhd certificate together',
   },
   {
-    src: akhdSigning,
-    alt: 'Himel and Proma signing documents during their Akhd with family around them',
+    src: akhdFamily,
+    alt: 'Himel and Proma seated with family at their wedding reception stage',
   },
 ]
