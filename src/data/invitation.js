@@ -1,6 +1,6 @@
 import akhdCertificate from '../assets/images/akhd-certificate.jpeg'
+import akhdGalleryPortrait from '../assets/images/akhd-gallery-portrait.jpeg'
 import akhdPortrait from '../assets/images/akhd-portrait.jpeg'
-import akhdSigning from '../assets/images/akhd-signing.jpeg'
 
 export const invitationSections = [
   {
@@ -19,9 +19,9 @@ export const invitationSections = [
   {
     id: 'story',
     label: 'Blessing',
-    title: '“And among His signs is this, that He created for you mates from among yourselves.”',
-    text: 'That you may dwell in peace and tranquility with them, and He has put love and mercy between your hearts. Verily in that are signs for those who reflect.',
-    accent: 'Surah 30 Ar-Rum, Ayat 21',
+    title: 'And of His signs is that He created for you from yourselves mates that you may find tranquility in them; and He placed between you affection and mercy. Indeed in that are signs for a people who give thought.',
+    text: '',
+    accent: 'Surah Ar-Rum · 30:21',
   },
   {
     id: 'events',
@@ -44,7 +44,7 @@ export const invitationSections = [
     cards: [
       {
         heading: 'Venue',
-        body: 'Green Garden\nRooftop Lounge, Restaurant & Banquet Hall\n9th Floor (Lift-9), 4/2 Daffodil Plaza\nSobhanbag, Dhanmondi-27, Dhaka',
+        body: 'Green Garden\nRooftop Lounge, Restaurant & Banquet Hall\n10th Floor (Lift-10), 4/2 Daffodil Plaza\nSobhanbag, Dhanmondi-27, Dhaka',
       },
       {
         heading: 'Time',
@@ -57,31 +57,11 @@ export const invitationSections = [
     ],
     venueMap: 'https://maps.app.goo.gl/7uCoQoVjFGd3779x9',
   },
-  /* RSVP temporarily removed.
-  {
-    id: 'rsvp',
-    label: 'RSVP',
-    title: 'Kindly let us know if you will celebrate with us.',
-    text: 'Your presence and prayers would mean a great deal to us. Please share your response below, or contact the family directly.',
-    contacts: ['01521427376'],
-    ctaPrimary: 'Call 01521427376',
-    ctaSecondary: 'Open Location',
-    venueMap: 'https://maps.app.goo.gl/7uCoQoVjFGd3779x9',
-  },
-  */
 ]
 
 export const galleryImages = [
   {
-    src: akhdPortrait,
-    alt: 'Himel and Proma holding a bouquet during their Akhd ceremony',
-  },
-  {
-    src: akhdCertificate,
+    src: akhdGalleryPortrait,
     alt: 'Himel and Proma holding their Akhd certificate together',
-  },
-  {
-    src: akhdSigning,
-    alt: 'Himel and Proma signing documents during their Akhd with family around them',
   },
 ]

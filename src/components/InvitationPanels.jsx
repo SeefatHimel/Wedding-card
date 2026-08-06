@@ -1,5 +1,4 @@
 import { Fragment, useEffect, useState } from 'react'
-// import RsvpForm from './RsvpForm'
 
 function AnimatedName({ name, delay }) {
   return (
@@ -76,7 +75,7 @@ function StoryPanel({ section, galleryImages, panelState }) {
       <div className="panel__content">
         <p className="panel__label">{section.label}</p>
         <h2 id={`${section.id}-title`}><LetterReveal text={section.title} /></h2>
-        <p className="panel__text">{section.text}</p>
+        {section.text && <p className="panel__text">{section.text}</p>}
         <div className="story-quote">
           <span className="story-quote__mark" aria-hidden="true">
             30:21
@@ -89,7 +88,9 @@ function StoryPanel({ section, galleryImages, panelState }) {
               <img src={image.src} alt={image.alt} loading="lazy" />
             </figure>
           ))}
-          <span className="image-strip__hint" aria-hidden="true">Swipe for more</span>
+          {galleryImages.length > 1 && (
+            <span className="image-strip__hint" aria-hidden="true">Swipe for more</span>
+          )}
         </div>
       </div>
     </section>
@@ -130,7 +131,7 @@ function EventsPanel({ section, panelState }) {
   )
 }
 
-function DetailsPanel({ section, rsvpSection, panelState }) {
+function DetailsPanel({ section, panelState }) {
   return (
     <section className={`panel panel--details ${panelState}`} id={section.id} aria-labelledby={`${section.id}-title`}>
       <div
@@ -149,7 +150,7 @@ function DetailsPanel({ section, rsvpSection, panelState }) {
               <CardTag
                 key={card.heading}
                 className={`detail-card${isVenueCard ? ' detail-card--venue' : ''}`}
-                href={isVenueCard ? rsvpSection.venueMap : undefined}
+                href={isVenueCard ? section.venueMap : undefined}
                 target={isVenueCard ? '_blank' : undefined}
                 rel={isVenueCard ? 'noreferrer' : undefined}
                 aria-label={isVenueCard ? 'Open venue location in Google Maps' : undefined}
@@ -163,6 +164,14 @@ function DetailsPanel({ section, rsvpSection, panelState }) {
                     </span>
                   ))}
                 </h3>
+                {isVenueCard ? (
+                  <span className="detail-card__action">
+                    Open in Google Maps
+                    <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                      <path d="M3 13 13 3M6 3h7v7" />
+                    </svg>
+                  </span>
+                ) : null}
               </CardTag>
             )
           })}
@@ -171,32 +180,6 @@ function DetailsPanel({ section, rsvpSection, panelState }) {
     </section>
   )
 }
-
-/* RSVP temporarily removed.
-function RsvpPanel({ section, panelState }) {
-  return (
-    <section className={`panel panel--rsvp ${panelState}`} id={section.id} aria-labelledby={`${section.id}-title`}>
-      <div className="panel__content panel__content--rsvp-compact">
-        <div className="rsvp-copy">
-          <p className="panel__label">{section.label}</p>
-          <h2 id={`${section.id}-title`}><LetterReveal text={section.title} /></h2>
-          <p className="panel__text">{section.text}</p>
-          <div className="contact-list" aria-label="RSVP contact numbers">
-            {section.contacts.map((contact) => (
-              <a key={contact} href={`tel:${contact.replace(/-/g, '')}`} className="contact-chip">
-                {contact}
-              </a>
-            ))}
-          </div>
-        </div>
-        <div className="rsvp-form-shell">
-          <RsvpForm />
-        </div>
-      </div>
-    </section>
-  )
-}
-*/
 
 function InvitationPanels({ sections, galleryImages, activeSection }) {
   const [enteredSections, setEnteredSections] = useState(() => new Set())
@@ -219,8 +202,7 @@ function InvitationPanels({ sections, galleryImages, activeSection }) {
       <OpeningPanel section={sections[0]} panelState={panelState(sections[0])} />
       <StoryPanel section={sections[1]} galleryImages={galleryImages} panelState={panelState(sections[1])} />
       <EventsPanel section={sections[2]} panelState={panelState(sections[2])} />
-      <DetailsPanel section={sections[3]} rsvpSection={sections[3]} panelState={panelState(sections[3])} />
-      {/* <RsvpPanel section={sections[4]} panelState={panelState(sections[4])} /> */}
+      <DetailsPanel section={sections[3]} panelState={panelState(sections[3])} />
     </>
   )
 }
