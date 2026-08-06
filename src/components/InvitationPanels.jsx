@@ -75,7 +75,7 @@ function StoryPanel({ section, galleryImages, panelState }) {
       <div className="panel__content">
         <p className="panel__label">{section.label}</p>
         <h2 id={`${section.id}-title`}><LetterReveal text={section.title} /></h2>
-        <p className="panel__text">{section.text}</p>
+        {section.text && <p className="panel__text">{section.text}</p>}
         <div className="story-quote">
           <span className="story-quote__mark" aria-hidden="true">
             30:21
@@ -88,7 +88,9 @@ function StoryPanel({ section, galleryImages, panelState }) {
               <img src={image.src} alt={image.alt} loading="lazy" />
             </figure>
           ))}
-          <span className="image-strip__hint" aria-hidden="true">Swipe for more</span>
+          {galleryImages.length > 1 && (
+            <span className="image-strip__hint" aria-hidden="true">Swipe for more</span>
+          )}
         </div>
       </div>
     </section>
@@ -162,13 +164,18 @@ function DetailsPanel({ section, panelState }) {
                     </span>
                   ))}
                 </h3>
+                {isVenueCard ? (
+                  <span className="detail-card__action">
+                    Open in Google Maps
+                    <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                      <path d="M3 13 13 3M6 3h7v7" />
+                    </svg>
+                  </span>
+                ) : null}
               </CardTag>
             )
           })}
         </div>
-        <a className="contact-chip contact-chip--details" href={`tel:${section.contact}`}>
-          {section.contactLabel}
-        </a>
       </div>
     </section>
   )

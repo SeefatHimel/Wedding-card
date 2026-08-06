@@ -35,12 +35,6 @@ function App() {
     <div className={`experience ${motionReady ? 'motion-ready' : ''}`}>
       <div className="experience__aura experience__aura--left" />
       <div className="experience__aura experience__aura--right" />
-      <div className="zari-weave" aria-hidden="true">
-        <svg viewBox="0 0 1440 900" preserveAspectRatio="none">
-          <path d="M-60 660C240 480 320 890 690 650S1130 260 1500 490" />
-          <path d="M-80 250C220 510 460 90 770 330S1190 760 1520 470" />
-        </svg>
-      </div>
       <div className="zari-sparkles" aria-hidden="true">
         {Array.from({ length: 9 }, (_, index) => <span key={index} />)}
       </div>

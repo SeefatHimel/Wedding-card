@@ -1,5 +1,5 @@
 import akhdCertificate from '../assets/images/akhd-certificate.jpeg'
-import akhdFamily from '../assets/images/akhd-family.jpeg'
+import akhdGalleryPortrait from '../assets/images/akhd-gallery-portrait.jpeg'
 import akhdPortrait from '../assets/images/akhd-portrait.jpeg'
 
 export const invitationSections = [
@@ -19,9 +19,9 @@ export const invitationSections = [
   {
     id: 'story',
     label: 'Blessing',
-    title: '“And among His signs is this, that He created for you mates from among yourselves.”',
-    text: 'That you may dwell in peace and tranquility with them, and He has put love and mercy between your hearts. Verily in that are signs for those who reflect.',
-    accent: 'Surah 30 Ar-Rum, Ayat 21',
+    title: 'And of His signs is that He created for you from yourselves mates that you may find tranquility in them; and He placed between you affection and mercy. Indeed in that are signs for a people who give thought.',
+    text: '',
+    accent: 'Surah Ar-Rum · 30:21',
   },
   {
     id: 'events',
@@ -56,22 +56,12 @@ export const invitationSections = [
       },
     ],
     venueMap: 'https://maps.app.goo.gl/7uCoQoVjFGd3779x9',
-    contact: '01521427376',
-    contactLabel: 'Call the family: 01521427376',
   },
 ]
 
 export const galleryImages = [
   {
-    src: akhdPortrait,
-    alt: 'Himel and Proma holding a bouquet during their Akhd ceremony',
-  },
-  {
-    src: akhdCertificate,
+    src: akhdGalleryPortrait,
     alt: 'Himel and Proma holding their Akhd certificate together',
-  },
-  {
-    src: akhdFamily,
-    alt: 'Himel and Proma seated with family at their wedding reception stage',
   },
 ]
