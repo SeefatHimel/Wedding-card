@@ -1,5 +1,4 @@
 import { Fragment, useEffect, useState } from 'react'
-// import RsvpForm from './RsvpForm'
 
 function AnimatedName({ name, delay }) {
   return (
@@ -130,7 +129,7 @@ function EventsPanel({ section, panelState }) {
   )
 }
 
-function DetailsPanel({ section, rsvpSection, panelState }) {
+function DetailsPanel({ section, panelState }) {
   return (
     <section className={`panel panel--details ${panelState}`} id={section.id} aria-labelledby={`${section.id}-title`}>
       <div
@@ -149,7 +148,7 @@ function DetailsPanel({ section, rsvpSection, panelState }) {
               <CardTag
                 key={card.heading}
                 className={`detail-card${isVenueCard ? ' detail-card--venue' : ''}`}
-                href={isVenueCard ? rsvpSection.venueMap : undefined}
+                href={isVenueCard ? section.venueMap : undefined}
                 target={isVenueCard ? '_blank' : undefined}
                 rel={isVenueCard ? 'noreferrer' : undefined}
                 aria-label={isVenueCard ? 'Open venue location in Google Maps' : undefined}
@@ -167,36 +166,13 @@ function DetailsPanel({ section, rsvpSection, panelState }) {
             )
           })}
         </div>
+        <a className="contact-chip contact-chip--details" href={`tel:${section.contact}`}>
+          {section.contactLabel}
+        </a>
       </div>
     </section>
   )
 }
-
-/* RSVP temporarily removed.
-function RsvpPanel({ section, panelState }) {
-  return (
-    <section className={`panel panel--rsvp ${panelState}`} id={section.id} aria-labelledby={`${section.id}-title`}>
-      <div className="panel__content panel__content--rsvp-compact">
-        <div className="rsvp-copy">
-          <p className="panel__label">{section.label}</p>
-          <h2 id={`${section.id}-title`}><LetterReveal text={section.title} /></h2>
-          <p className="panel__text">{section.text}</p>
-          <div className="contact-list" aria-label="RSVP contact numbers">
-            {section.contacts.map((contact) => (
-              <a key={contact} href={`tel:${contact.replace(/-/g, '')}`} className="contact-chip">
-                {contact}
-              </a>
-            ))}
-          </div>
-        </div>
-        <div className="rsvp-form-shell">
-          <RsvpForm />
-        </div>
-      </div>
-    </section>
-  )
-}
-*/
 
 function InvitationPanels({ sections, galleryImages, activeSection }) {
   const [enteredSections, setEnteredSections] = useState(() => new Set())
@@ -219,8 +195,7 @@ function InvitationPanels({ sections, galleryImages, activeSection }) {
       <OpeningPanel section={sections[0]} panelState={panelState(sections[0])} />
       <StoryPanel section={sections[1]} galleryImages={galleryImages} panelState={panelState(sections[1])} />
       <EventsPanel section={sections[2]} panelState={panelState(sections[2])} />
-      <DetailsPanel section={sections[3]} rsvpSection={sections[3]} panelState={panelState(sections[3])} />
-      {/* <RsvpPanel section={sections[4]} panelState={panelState(sections[4])} /> */}
+      <DetailsPanel section={sections[3]} panelState={panelState(sections[3])} />
     </>
   )
 }

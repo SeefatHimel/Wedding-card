@@ -44,7 +44,7 @@ export const invitationSections = [
     cards: [
       {
         heading: 'Venue',
-        body: 'Green Garden\nRooftop Lounge, Restaurant & Banquet Hall\n9th Floor (Lift-9), 4/2 Daffodil Plaza\nSobhanbag, Dhanmondi-27, Dhaka',
+        body: 'Green Garden\nRooftop Lounge, Restaurant & Banquet Hall\n10th Floor (Lift-10), 4/2 Daffodil Plaza\nSobhanbag, Dhanmondi-27, Dhaka',
       },
       {
         heading: 'Time',
@@ -56,19 +56,9 @@ export const invitationSections = [
       },
     ],
     venueMap: 'https://maps.app.goo.gl/7uCoQoVjFGd3779x9',
+    contact: '01521427376',
+    contactLabel: 'Call the family: 01521427376',
   },
-  /* RSVP temporarily removed.
-  {
-    id: 'rsvp',
-    label: 'RSVP',
-    title: 'Kindly let us know if you will celebrate with us.',
-    text: 'Your presence and prayers would mean a great deal to us. Please share your response below, or contact the family directly.',
-    contacts: ['01521427376'],
-    ctaPrimary: 'Call 01521427376',
-    ctaSecondary: 'Open Location',
-    venueMap: 'https://maps.app.goo.gl/7uCoQoVjFGd3779x9',
-  },
-  */
 ]
 
 export const galleryImages = [
