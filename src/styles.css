@@ -3497,6 +3497,35 @@ body {
   box-shadow: 0 0 0 0.22rem rgba(255, 253, 249, 0.96), 0 0 0 0.3rem rgba(185, 129, 58, 0.68), 0 20px 48px rgba(91, 32, 40, 0.16);
 }
 
+/* Same photo shimmer used on the Holud invitation opening image. */
+.motion-ready .panel--story .image-strip:has(.image-strip__card:only-child) .image-strip__card {
+  opacity: 1;
+  transform: none;
+  animation: none;
+}
+
+.image-strip__shimmer {
+  position: absolute;
+  inset: -20% auto -20% -35%;
+  z-index: 2;
+  width: 30%;
+  background: linear-gradient(105deg, transparent, rgba(255, 244, 178, 0.2), transparent);
+  mix-blend-mode: screen;
+  opacity: 0;
+  pointer-events: none;
+  transform: skewX(-18deg);
+}
+
+.motion-ready .panel--story.has-entered .image-strip__shimmer {
+  animation: photo-shimmer 2.8s 800ms cubic-bezier(0.2, 0.75, 0.3, 1) both;
+}
+
+@keyframes photo-shimmer {
+  0% { opacity: 0; transform: translateX(0) skewX(-18deg); }
+  18% { opacity: 1; }
+  72%, 100% { opacity: 0; transform: translateX(520%) skewX(-18deg); }
+}
+
 .panel--story .panel__content {
   isolation: isolate;
 }

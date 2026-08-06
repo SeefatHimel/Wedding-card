@@ -86,6 +86,7 @@ function StoryPanel({ section, galleryImages, panelState }) {
           {galleryImages.map((image, index) => (
             <figure className={`image-strip__card image-strip__card--${index + 1}`} key={image.src}>
               <img src={image.src} alt={image.alt} loading="lazy" />
+              <span className="image-strip__shimmer" aria-hidden="true" />
             </figure>
           ))}
           {galleryImages.length > 1 && (
