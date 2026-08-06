@@ -129,15 +129,15 @@ a:focus-visible {
   animation-delay: var(--sparkle-delay);
 }
 
-.zari-sparkles span:nth-child(1) { --sparkle-x: 8; --sparkle-duration: 11s; --sparkle-delay: -2s; }
-.zari-sparkles span:nth-child(2) { --sparkle-x: 19; --sparkle-duration: 14s; --sparkle-delay: -9s; }
-.zari-sparkles span:nth-child(3) { --sparkle-x: 31; --sparkle-duration: 12s; --sparkle-delay: -5s; }
-.zari-sparkles span:nth-child(4) { --sparkle-x: 46; --sparkle-duration: 15s; --sparkle-delay: -12s; }
-.zari-sparkles span:nth-child(5) { --sparkle-x: 59; --sparkle-duration: 10s; --sparkle-delay: -3s; }
-.zari-sparkles span:nth-child(6) { --sparkle-x: 70; --sparkle-duration: 13s; --sparkle-delay: -8s; }
-.zari-sparkles span:nth-child(7) { --sparkle-x: 81; --sparkle-duration: 16s; --sparkle-delay: -11s; }
-.zari-sparkles span:nth-child(8) { --sparkle-x: 91; --sparkle-duration: 12s; --sparkle-delay: -6s; }
-.zari-sparkles span:nth-child(9) { --sparkle-x: 38; --sparkle-duration: 17s; --sparkle-delay: -14s; }
+.zari-sparkles span:nth-child(1) { --sparkle-x: 8; --sparkle-duration: 11s; --sparkle-delay: -2s; --sparkle-mid: 36px; --sparkle-end: -26px; --sparkle-turn: 196deg; --sparkle-finish-turn: 424deg; }
+.zari-sparkles span:nth-child(2) { --sparkle-x: 23; --sparkle-duration: 14s; --sparkle-delay: -9s; --sparkle-mid: -31px; --sparkle-end: 42px; --sparkle-turn: 128deg; --sparkle-finish-turn: 508deg; }
+.zari-sparkles span:nth-child(3) { --sparkle-x: 52; --sparkle-duration: 12s; --sparkle-delay: -5s; --sparkle-mid: 52px; --sparkle-end: 19px; --sparkle-turn: 242deg; --sparkle-finish-turn: 468deg; }
+.zari-sparkles span:nth-child(4) { --sparkle-x: 71; --sparkle-duration: 15s; --sparkle-delay: -12s; --sparkle-mid: -46px; --sparkle-end: -34px; --sparkle-turn: 154deg; --sparkle-finish-turn: 536deg; }
+.zari-sparkles span:nth-child(5) { --sparkle-x: 91; --sparkle-duration: 10s; --sparkle-delay: -3s; --sparkle-mid: -22px; --sparkle-end: -78px; --sparkle-turn: 274deg; --sparkle-finish-turn: 439deg; }
+.zari-sparkles span:nth-child(6) { --sparkle-x: 36; --sparkle-duration: 13s; --sparkle-delay: -8s; --sparkle-mid: 67px; --sparkle-end: 29px; --sparkle-turn: 173deg; --sparkle-finish-turn: 573deg; }
+.zari-sparkles span:nth-child(7) { --sparkle-x: 64; --sparkle-duration: 16s; --sparkle-delay: -11s; --sparkle-mid: -38px; --sparkle-end: 51px; --sparkle-turn: 264deg; --sparkle-finish-turn: 442deg; }
+.zari-sparkles span:nth-child(8) { --sparkle-x: 82; --sparkle-duration: 12s; --sparkle-delay: -6s; --sparkle-mid: 25px; --sparkle-end: -61px; --sparkle-turn: 139deg; --sparkle-finish-turn: 519deg; }
+.zari-sparkles span:nth-child(9) { --sparkle-x: 47; --sparkle-duration: 17s; --sparkle-delay: -14s; --sparkle-mid: -63px; --sparkle-end: -16px; --sparkle-turn: 223deg; --sparkle-finish-turn: 481deg; }
 
 .device-frame {
   position: relative;
@@ -1518,11 +1518,11 @@ a:focus-visible {
 }
 
 @keyframes zari-sparkle-float {
-  0% { opacity: 0; transform: translate3d(0, -5vh, 0) rotate(0deg) scale(0.55); }
+  0% { opacity: 0; transform: translate3d(0, -5vh, 0) rotate(18deg) scale(0.55); }
   12% { opacity: 0.9; }
-  50% { transform: translate3d(22px, 48vh, 0) rotate(180deg) scale(1); }
+  50% { transform: translate3d(var(--sparkle-mid), 48vh, 0) rotate(var(--sparkle-turn)) scale(1); }
   88% { opacity: 0.65; }
-  100% { opacity: 0; transform: translate3d(-16px, 110vh, 0) rotate(360deg) scale(0.65); }
+  100% { opacity: 0; transform: translate3d(var(--sparkle-end), 110vh, 0) rotate(var(--sparkle-finish-turn)) scale(0.65); }
 }
 
 @media (max-width: 920px) {
